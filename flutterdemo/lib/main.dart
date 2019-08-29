@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'res/listData.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,50 +13,65 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
+
 class LayoutDemo extends StatelessWidget {
-
-
-  Widget _getListData (context,index) {
-    return Container(
-      child:Column(
-        children: <Widget>[
-          Image.network(listData[index]['imageUrl']),
-          SizedBox(height: 12),
-          Text(
-            listData[index]['title'],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 18
-            ),
-          )
-        ],
-
-      ),
-      decoration: BoxDecoration(
-          border: Border.all(
-              color:Color.fromRGBO(233, 233,233, 0.9),
-              width: 1
-          )
-      ),
-
-      // height: 400,  //设置高度没有反应
-    );
-  }
-
-
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      //注意
-      gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing:10.0 ,   //水平子 Widget 之间间距
-        mainAxisSpacing: 10.0,    //垂直子 Widget 之间间距
-        crossAxisCount: 2,  //一行的 Widget 数量
-//        childAspectRatio:0.9,  //宽度和高度的比例
-      ),
-      padding: EdgeInsets.all(10),
-      itemCount: listData.length,
-      itemBuilder:this._getListData,
+    return Column(
+      children: <Widget>[
+
+        Row(
+          children: <Widget>[
+            Expanded(
+              child:   Container(
+                height: 180,
+                color: Colors.black,
+                child: Text(
+                    '你好Flutter',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: 10),
+        Row(
+          children: <Widget>[
+            Expanded(
+                flex: 2,
+                child: Container(
+                  height: 180,
+                  child: Image.network("https://www.itying.com/images/flutter/2.png",fit: BoxFit.cover),
+                )
+            ),
+            SizedBox(width: 10),
+            Expanded(
+                flex: 1,
+                child: Container(
+                    height: 180,
+                    child: ListView(
+                      children: <Widget>[
+                        Container(
+                          height: 85,
+                          child: Image.network("https://www.itying.com/images/flutter/3.png",fit: BoxFit.cover),
+
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 85,
+                          child: Image.network("https://www.itying.com/images/flutter/4.png",fit: BoxFit.cover),
+                        )
+                      ],
+                    )
+                )
+            ),
+
+          ],
+        )
+      ],
     );
   }
 }
