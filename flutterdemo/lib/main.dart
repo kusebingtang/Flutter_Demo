@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'res/listData.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,52 +10,29 @@ class MyApp extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBar(title: Text('FlutterDemo')),
-          body: HomeContent(),
-        ));
+      appBar: AppBar(title: Text('FlutterDemo')),
+      body: HomeContent(),
+    )
+    );
   }
 }
 
 class HomeContent extends StatelessWidget {
+  //自定义方法
+  Widget _getListData(context, index) {
+    return ListTile(
+        title: Text(listData[index]["title"]),
+        leading: Image.network(listData[index]["imageUrl"]),
+        subtitle: Text(listData[index]["author"]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      height: 180,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            width: 180.0,
-            color: Colors.red,
-          ),
-          Container(
-            width: 180.0,
-            color: Colors.orange,
-            child: ListView(
-              children: <Widget>[
-                Image.network("https://www.itying.com/images/flutter/1.png"),
-                Text('我是一个文本'),
-                Text('我是一个文本'),
-                Text('我是一个文本'),
-                Text('我是一个文本')
-              ],
-            ),
-          ),
-          Container(
-            width: 180.0,
-            color: Colors.blue,
-          ),
-          Container(
-            width: 180.0,
-            color: Colors.deepOrange,
-          ),
-          Container(
-            width: 180.0,
-            color: Colors.deepPurpleAccent,
-          ),
-        ],
-      ),
+    return ListView.builder(
+        itemCount: listData.length,
+        itemBuilder: this._getListData
     );
   }
 }
