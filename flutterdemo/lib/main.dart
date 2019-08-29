@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       home:Scaffold(
         appBar:AppBar(
-            title:Text('Flutter Demo11')
+            title:Text('Demo Start')
         ),
         body:HomeContent(),
       ),
@@ -31,15 +31,34 @@ class HomeContent extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Center(
-        child:Text(
-          '你好Flutter Hello',
-          textDirection: TextDirection.ltr,
+        child:Container (
+          child: Text(
+            "Flutter SDK有多个分支，如beta、dev、master、stable，其中stable分支为稳定分支",
+            textAlign:TextAlign.center,
+              textScaleFactor: 1.8,
+              overflow:TextOverflow.visible ,
+              maxLines: 4,
 
-          style: TextStyle(
-            fontSize: 40.0,
-            color: Colors.yellow,
-            // color: Color.fromRGBO(244, 233, 121, 0.5),
+            style:TextStyle(
+              fontSize: 16.0,
+              color:Colors.red,
+              fontStyle: FontStyle.italic,
+            )
           ),
+          height: 300.0,
+          width: 300,
+          decoration: BoxDecoration(
+            color: Colors.yellow,
+            border: Border.all(
+                color: Colors.blue,
+                width: 2.0
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20)
+            )
+          ),
+            transform:Matrix4.rotationZ(0.0),
+          alignment: Alignment.topLeft,
         )
     );
   }
